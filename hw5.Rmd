@@ -47,6 +47,7 @@ data_clean$`Store Name` <- factor(data_clean$`Store Name`)
 
 # extract year, month and day from the variable `Date`
 data_clean <- data_clean %>% mutate("New_Date" = Date) %>% separate("Date", c("Month", "Day", "Year"), sep="/")
+# Note that I could have used the mdy function but I personally think this turns out cleaner
 ```
 
 3. First overview:
@@ -66,7 +67,7 @@ Cat_By_Vol_Sold <- head(Cat_By_Vol_Sold, 15)
 # There are way too many categories so I grabbed the top 15 by volume.
 
 ggplot(Cat_By_Vol_Sold, aes(x=`Category Name`, y=total)) + geom_col(aes(fill=factor(`Category Name`)), show.legend=FALSE) + xlab("Category") + coord_flip() + ylab("Liters Sold (x 100,000)") + ggtitle("Top 15 Most Popular Liquor Categories In Ames")
-# It looks like vodka, whisky, and rum are top sellers in Ames
+# It looks like vodka and whisky are top sellers in Ames
 ```
 4. Find the daily sales liquor sales in Ames in 2018. Summarize number of sales, volume of liquor sold and amount of money spent. Plot volume sold by day (use a scatterplot of volume by day and facet by month). Describe any patterns.
 Find the dates for ISU football home games in Fall 2018. Can you see a pattern? 
